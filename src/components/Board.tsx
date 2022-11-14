@@ -1,8 +1,14 @@
-import style from "./Board.module.css";
+import React from "react";
 import Square from "./Square";
+const style = require("./Board.module.css");
 
-const Board = ({ squares, onClick }) => {
-	const renderSquare = (i) => {
+interface BoardType {
+	squares: Array<string>;
+	onClick: (i: number) => void;
+}
+
+const Board = ({ squares, onClick }: BoardType) => {
+	const renderSquare = (i: number) => {
 		return <Square value={squares[i]} onClick={() => onClick(i)} />;
 	};
 
