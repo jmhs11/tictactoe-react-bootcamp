@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import calculateWinner from "../utils/calculateWinner";
-import BoardClass from "./BoardClass";
+import Board from "./Board";
 import style from "./Game.module.css";
 
 const Game = () => {
@@ -34,10 +34,11 @@ const Game = () => {
 	};
 
 	const jumpTo = (step) => {
-		setState({
+		setState((prevState) => ({
+			...prevState,
 			stepNumber: step,
 			xIsNext: step % 2 === 0,
-		});
+		}));
 	};
 
 	const history = state.history;
@@ -63,7 +64,7 @@ const Game = () => {
 	return (
 		<div className={style.game}>
 			<div className={style.game_board}>
-				<BoardClass squares={current.squares} onClick={(i) => handleClick(i)} />
+				<Board squares={current.squares} onClick={(i) => handleClick(i)} />
 			</div>
 			<div className={style.game_info}>
 				<div>{status}</div>
